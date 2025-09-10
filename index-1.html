@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential First Aid Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .emergency-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .emergency-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .cpr-demo {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 2px dashed #ef4444;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-red-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">+</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900">Essential First Aid</h1>
+                </div>
+                <div class="flex items-center space-x-2 bg-red-100 px-4 py-2 rounded-full">
+                    <span class="w-3 h-3 bg-red-500 rounded-full pulse-animation"></span>
+                    <span class="text-red-700 font-semibold">Emergency: 911</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-red-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-8 py-3 overflow-x-auto">
+                <button onclick="showSection('overview')" class="nav-btn whitespace-nowrap px-3 py-2 rounded hover:bg-red-700 transition-colors">Overview</button>
+                <button onclick="showSection('cpr')" class="nav-btn whitespace-nowrap px-3 py-2 rounded hover:bg-red-700 transition-colors">CPR</button>
+                <button onclick="showSection('choking')" class="nav-btn whitespace-nowrap px-3 py-2 rounded hover:bg-red-700 transition-colors">Choking</button>
+                <button onclick="showSection('bleeding')" class="nav-btn whitespace-nowrap px-3 py-2 rounded hover:bg-red-700 transition-colors">Bleeding</button>
+                <button onclick="showSection('burns')" class="nav-btn whitespace-nowrap px-3 py-2 rounded hover:bg-red-700 transition-colors">Burns</button>
+                <button onclick="showSection('fractures')" class="nav-btn whitespace-nowrap px-3 py-2 rounded hover:bg-red-700 transition-colors">Fractures</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Overview Section -->
+        <div id="overview" class="section">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">First Aid Fundamentals</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">🚨 When to Call Emergency Services</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-red-500 mt-1">•</span>
+                                <span>Unconsciousness or altered mental state</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-red-500 mt-1">•</span>
+                                <span>Difficulty breathing or no breathing</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-red-500 mt-1">•</span>
+                                <span>Severe bleeding that won't stop</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-red-500 mt-1">•</span>
+                                <span>Signs of heart attack or stroke</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-red-500 mt-1">•</span>
+                                <span>Severe burns or electrical injuries</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">⚠️ Universal Precautions</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-blue-500 mt-1">•</span>
+                                <span>Always ensure scene safety first</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-blue-500 mt-1">•</span>
+                                <span>Wear gloves when dealing with bodily fluids</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-blue-500 mt-1">•</span>
+                                <span>Get consent before providing care</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-blue-500 mt-1">•</span>
+                                <span>Don't move someone with spinal injuries</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-blue-500 mt-1">•</span>
+                                <span>Stay calm and reassure the victim</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-amber-800 mb-2">⚠️ Important Disclaimer</h3>
+                    <p class="text-amber-700">This guide provides basic first aid information for educational purposes. It does not replace professional medical training or emergency medical services. Always call emergency services for serious injuries or medical emergencies.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CPR Section -->
+        <div id="cpr" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">CPR (Cardiopulmonary Resuscitation)</h2>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">When CPR is Needed</h3>
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                        <p class="text-red-700">CPR should be performed when a person is unresponsive and not breathing normally or not breathing at all.</p>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">CPR Steps for Adults</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Check Responsiveness</h4>
+                                    <p class="text-gray-600">Tap shoulders firmly and shout "Are you okay?"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Call for Help</h4>
+                                    <p class="text-gray-600">Call 911 immediately or have someone else do it</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Position Hands</h4>
+                                    <p class="text-gray-600">Place heel of one hand on center of chest, between nipples. Place other hand on top, interlacing fingers</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">4</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Chest Compressions</h4>
+                                    <p class="text-gray-600">Push hard and fast at least 2 inches deep, 100-120 compressions per minute</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">5</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Rescue Breaths</h4>
+                                    <p class="text-gray-600">Tilt head back, lift chin, give 2 breaths after every 30 compressions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cpr-demo rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-red-800 mb-4">CPR Demonstration</h3>
+                        <div class="text-center">
+                            <svg width="200" height="150" viewBox="0 0 200 150" class="mx-auto mb-4">
+                                <!-- Body outline -->
+                                <ellipse cx="100" cy="120" rx="60" ry="25" fill="#f3f4f6" stroke="#6b7280" stroke-width="2"/>
+                                <!-- Chest -->
+                                <rect x="70" y="60" width="60" height="40" rx="10" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+                                <!-- Head -->
+                                <circle cx="100" cy="35" r="20" fill="#f9fafb" stroke="#6b7280" stroke-width="2"/>
+                                <!-- Hands position -->
+                                <rect x="85" y="70" width="30" height="8" rx="4" fill="#ef4444" opacity="0.8"/>
+                                <!-- Compression indicator -->
+                                <text x="100" y="85" text-anchor="middle" class="text-xs font-semibold fill-red-600">PUSH HERE</text>
+                                <!-- Arrow -->
+                                <path d="M100 50 L100 65 M95 60 L100 65 L105 60" stroke="#ef4444" stroke-width="2" fill="none"/>
+                            </svg>
+                            <div class="bg-white rounded-lg p-4 border-2 border-red-200">
+                                <div class="text-2xl font-bold text-red-600 mb-2" id="cpr-counter">30</div>
+                                <button onclick="startCPRDemo()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                                    Start CPR Demo
+                                </button>
+                                <p class="text-sm text-gray-600 mt-2">Click to practice compression timing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Choking Section -->
+        <div id="choking" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Choking Emergency</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Signs of Choking</h3>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded mb-6">
+                            <ul class="space-y-2 text-yellow-800">
+                                <li>• Cannot speak, cough, or breathe</li>
+                                <li>• Clutching throat with hands</li>
+                                <li>• Skin turning blue or gray</li>
+                                <li>• Loss of consciousness</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Heimlich Maneuver Steps</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Stand Behind Person</h4>
+                                    <p class="text-gray-600">Position yourself behind the choking person</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Make a Fist</h4>
+                                    <p class="text-gray-600">Place fist above navel, below ribcage</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Grasp and Thrust</h4>
+                                    <p class="text-gray-600">Grasp fist with other hand, thrust upward and inward</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">4</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Repeat</h4>
+                                    <p class="text-gray-600">Continue until object is expelled or person becomes unconscious</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-4">Heimlich Maneuver Illustration</h3>
+                        <svg width="250" height="300" viewBox="0 0 250 300" class="mx-auto">
+                            <!-- Person choking -->
+                            <circle cx="125" cy="60" r="25" fill="#fef2f2" stroke="#6b7280" stroke-width="2"/>
+                            <rect x="100" y="85" width="50" height="80" rx="25" fill="#f3f4f6" stroke="#6b7280" stroke-width="2"/>
+                            <rect x="90" y="165" width="70" height="60" rx="15" fill="#f9fafb" stroke="#6b7280" stroke-width="2"/>
+                            
+                            <!-- Helper behind -->
+                            <circle cx="125" cy="180" r="20" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                            <rect x="105" y="200" width="40" height="60" rx="20" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+                            
+                            <!-- Arms around -->
+                            <path d="M85 140 Q70 150 75 170 Q80 180 95 175" stroke="#3b82f6" stroke-width="3" fill="none"/>
+                            <path d="M165 140 Q180 150 175 170 Q170 180 155 175" stroke="#3b82f6" stroke-width="3" fill="none"/>
+                            
+                            <!-- Fist position -->
+                            <circle cx="125" cy="140" r="8" fill="#ef4444"/>
+                            <text x="125" y="145" text-anchor="middle" class="text-xs font-bold fill-white">✊</text>
+                            
+                            <!-- Arrow showing thrust direction -->
+                            <path d="M125 160 L125 130 M120 135 L125 130 L130 135" stroke="#ef4444" stroke-width="3" fill="none"/>
+                            <text x="140" y="125" class="text-sm font-semibold fill-red-600">THRUST UP</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bleeding Section -->
+        <div id="bleeding" class="section hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Severe Bleeding Control</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Bleeding Control Steps</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Ensure Safety</h4>
+                                    <p class="text-gray-600">Wear gloves if available, ensure scene is safe</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Apply Direct Pressure</h4>
+                                    <p class="text-gray-600">Use clean cloth or gauze, press firmly on wound</p>
+                                </
