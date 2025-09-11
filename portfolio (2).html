@@ -1,0 +1,236 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S. Prasanth - Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e9ecef;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            color: #1a3c5e;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.1em;
+            color: #2c5282;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            color: #1a3c5e;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #3182ce;
+            display: inline-block;
+        }
+
+        .section p, .section ul {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: disc;
+            padding-left: 25px;
+        }
+
+        .section ul li {
+            margin-bottom: 12px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            background-color: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.4em;
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-item p {
+            font-size: 1em;
+            color: #4a5568;
+        }
+
+        .portfolio-item .tech {
+            font-style: italic;
+            color: #718096;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>S. Prasanth</h1>
+            <p>Aspiring Web Developer</p>
+        </div>
+
+        <div class="contact-info">
+            <p>📞 9080707156</p>
+            <p>✉️ prasanth13122009@gmail.com</p>
+            <p>📍 Chennai, Tamilnadu</p>
+        </div>
+
+        <div class="section">
+            <h2>Career Objective</h2>
+            <p>Passionate about crafting innovative, user-friendly websites, I aim to excel as a web developer by leveraging my skills in modern technologies and delivering impactful digital solutions.</p>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <p>B.Sc. in Computer Science (Ongoing)</p>
+        </div>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML & CSS</li>
+                <li>Python</li>
+                <li>Java</li>
+                <li>Microsoft Excel</li>
+                <li>Microsoft Word</li>
+                <li>Video Editing</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h3>Personal Portfolio Website</h3>
+                    <p>A responsive portfolio website to showcase my skills, projects, and contact information, designed with a clean and modern UI.</p>
+                    <p class="tech">Technologies: HTML, CSS</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>Video Editing Showcase</h3>
+                    <p>Created engaging video content for academic and personal projects, utilizing professional editing software to enhance storytelling.</p>
+                    <p class="tech">Technologies: Video Editing Software</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>E-Commerce Website Prototype</h3>
+                    <p>A prototype for a simple e-commerce platform with product listings and a user-friendly interface, built to practice front-end development.</p>
+                    <p class="tech">Technologies: HTML, CSS, JavaScript</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
